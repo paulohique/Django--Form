@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    #registros {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Rifa</h1>
+    <form action ="{% url 'listagem_usuarios' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <div class="form-group">
+        <label for="numeroRifa">Número da Rifa:</label>
+        <input type="text" id="numeroRifa" name="numeroRifa" required>
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone de Contato:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+      </div>
+      <div class="form-group">
+        <label for="pago">Está Pago?</label>
+        <select id="pago" name="pago" required>
+            <option value="True">Sim</option>
+            <option value="False">Não</option>
+        </select>
+      </div>
+      <button type="submit" style="text-align: center;">Enviar</button>
+    </form>
+    <div id="registros"></div>
+  </div>
+
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("rifaForm");
+      const registrosContainer = document.getElementById("registros");
+
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const nome = form.nome.value;
+        const numeroRifa = form.numeroRifa.value;
+        const telefone = form.telefone.value;
+        const pago = form.pago.value;
+
+        const registro = document.createElement("div");
+        registro.classList.add("registro");
+        registro.innerHTML = `
+          <p><strong>Nome:</strong> ${nome}</p>
+          <p><strong>Número da Rifa:</strong> ${numeroRifa}</p>
+          <p><strong>Telefone:</strong> ${telefone}</p>
+          <p><strong>Pago:</strong> ${pago}</p>
+        `;
+
+        registrosContainer.appendChild(registro);
+
+        form.reset();
+      });
+    });
+  </script> -->
+</body>
+</html>
